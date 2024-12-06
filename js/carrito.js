@@ -12,7 +12,7 @@ const botonComprar = document.querySelector("#carrito-acciones-comprar")
 
 function generarMensajeWhatsApp() {
     if (!productosEnCarrito || productosEnCarrito.length === 0) {
-        return ''; // No hay productos en el carrito
+        return ''; 
     }
 
     let mensaje = '¡Hola! Quisiera hacer un pedido:\n\n';
@@ -24,7 +24,7 @@ function generarMensajeWhatsApp() {
     const total = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
     mensaje += `\nTotal: s/.${total}\n\nGracias.`;
 
-    return encodeURIComponent(mensaje); // Codificar el mensaje para la URL
+    return encodeURIComponent(mensaje); 
 }
 
 
@@ -115,17 +115,17 @@ function actualizarTotal() {
 botonComprar.addEventListener("click", comprarCarrito);
 function comprarCarrito() {
     const mensaje = generarMensajeWhatsApp();
-    const numeroWhatsApp = '924807635'; // Reemplaza con tu número de WhatsApp en formato internacional
+    const numeroWhatsApp = '9####5'; 
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
 
-    // Vaciar el carrito
+    
     productosEnCarrito.length = 0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
-    // Redirigir a WhatsApp
+    
     window.location.href = urlWhatsApp;
 
-    // Actualizar la vista del carrito
+    
     contenedorCarritoVacio.classList.add("disabled");
     contenedorCarritoProductos.classList.add("disabled");
     contenedorCarritoAcciones.classList.add("disabled");
